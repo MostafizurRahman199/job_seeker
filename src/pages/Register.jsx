@@ -95,20 +95,20 @@ const Register = () => {
 
     return (
         <div className="md:w-10/12 mx-auto flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
-            <div className="w-full flex flex-col md:flex md:flex-row justify-center items-center gap-4 sm:shadow-2xl  space-y-8  p-8  rounded-2xl " data-aos="fade-up">
-              <div className='flex-1'>
+            <div className="w-full flex flex-col md:flex md:flex-row justify-center items-center gap-4 sm:shadow-2xl  space-y-8  p-8  rounded-2xl bg-gray-100" data-aos="fade-up">
+              <div className='flex-1 ' >
               <div>
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
                         Create your account
                     </h2>
                 </div>
-                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="rounded-md shadow-sm space-y-4">
+                <form className="mt-8 space-y-3" onSubmit={handleSubmit}>
+                    <div className="rounded-md shadow-sm space-y-2">
                         <div>
                             <input
                                 type="text"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
+                                className="appearance-none  relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-3xl focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
                                 placeholder="Full Name"
                                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                             />
@@ -117,7 +117,7 @@ const Register = () => {
                             <input
                                 type="email"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-3xl relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
                                 placeholder="Email address"
                                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                             />
@@ -126,7 +126,7 @@ const Register = () => {
                             <input
                                 type="url"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
+                                className="appearance-none  rounded-3xl relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
                                 placeholder="Photo URL"
                                 onChange={(e) => setFormData({...formData, photoURL: e.target.value})}
                             />
@@ -135,7 +135,7 @@ const Register = () => {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-black focus:border-black sm:text-sm pr-10"
+                                className="appearance-none rounded-3xl relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-black focus:border-black sm:text-sm pr-10"
                                 placeholder="Password"
                                 onChange={(e) => setFormData({...formData, password: e.target.value})}
                             />
@@ -160,11 +160,14 @@ const Register = () => {
                     <div>
                         <button
                             type="submit"
-                            className="group relative w-full flex justify-center  border border-transparent text-sm  bg-black hover:bg-[#9c1631]focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black px-8 py-3 rounded-md text-white font-bold transition-transform hover:scale-105 shadow-2xl">
+                            className="group relative w-full flex justify-center  border border-transparent text-sm  bg-black hover:bg-[#9c1631]focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black px-8 py-3 rounded-3xl text-white font-bold transition-transform hover:scale-105 shadow-2xl">
                             Register
                         </button>
                     </div>
                 </form>
+
+
+
 
                 <div className="mt-1 flex items-center">
                     <div className="flex-grow border-t border-gray-300"></div>
@@ -175,7 +178,7 @@ const Register = () => {
                 <div className="mt-1">
                     <button
                         onClick={handleGoogleSignIn}
-                        className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
                     >
                         <FcGoogle className="text-xl" />
                         Continue with Google

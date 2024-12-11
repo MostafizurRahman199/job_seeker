@@ -2,10 +2,11 @@ import React from 'react'
 import { FaGithub, FaLinkedin, FaTwitter, FaHeart, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa'
 
 import gamerLogo from "../assets/gamer3.png"
+import jobLogo from "../assets/job_logo.png";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-r from-[#A91D3A] to-[#151515]">
+    <footer className="relative bg-gradient-to-r from-black to-[#151515]">
 
   
 
@@ -14,14 +15,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-white">
         
           <div className="space-y-4">
-          <div className='flex justify-start items-center'>
+          <div className='flex justify-start items-end'>
+            <h3 className="font_header text-4xl font-bold bg-clip-text text-transparent bg-white">
+              Job
+            </h3>
           <img
-                className="block md:hidden lg:block w-24"
-                src={gamerLogo}
+                className="lg:block w-20"
+                src={jobLogo}
                 alt="Logo"
               />
-            <h3 className="font_header text-2xl font-bold bg-clip-text text-transparent bg-white">
-              Job Seeker
+            <h3 className="font_header text-4xl font-bold bg-clip-text text-transparent bg-white">
+             Seeker
             </h3>
           </div>
             <p className="text-sm leading-relaxed">
@@ -33,14 +37,24 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'About Us', 'All Reviews', 'Login', ].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-sm hover:text-black transition-colors duration-300">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+  {['Home', 'About Us', 'All Reviews', 'Login'].map((item) => (
+    <li key={item} className="relative group">
+      <a
+        href="#"
+        className="text-sm pl-4 relative block transition-all duration-200 hover:translate-x-2"
+      >
+        {/* Horizontal line */}
+        <span className="absolute left-0 top-1/2 transform -translate-y-1/2 w-0 h-[2px] bg-white transition-all duration-200 group-hover:w-4"></span>
+        {item}
+      </a>
+    </li>
+  ))}
+</ul>
+
+
+
+
+
           </div>
 
        

@@ -13,7 +13,8 @@ import DarkModeToggle from '../components/Home/DarkModeToggle';
 import gamerLogo from "../assets/gamer3.png"
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-import 'react-tooltip/dist/react-tooltip.css'
+import 'react-tooltip/dist/react-tooltip.css';
+import JobLogo from "../assets/job_logo.png";
 
 
 const Navbar = () => {
@@ -169,14 +170,17 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
        
           <div className="flex flex-shrink-0 items-center  gap-1 sm:gap-4">
-            <Link to="/" className="flex items-center space-x-1">
+            <Link to="/" className="flex items-end  space-x-1">
+              <span className="font_header text-3xl sm:text-3xl md:text-xl lg:text-3xl text-md font-bold bg-gradient-to-r from-[#A91D3A] to-[#151515] bg-clip-text text-transparent truncate">
+              Job 
+              </span>
               <img
-                className="block md:hidden lg:block h-10 w-auto sm:h-10"
-                src={gamerLogo}
+                className="block md:hidden lg:block h-12  w-12 sm:h-10 mb-2"
+                src={JobLogo}
                 alt="Logo"
               />
               <span className="font_header text-3xl sm:text-3xl md:text-xl lg:text-3xl text-md font-bold bg-gradient-to-r from-[#A91D3A] to-[#151515] bg-clip-text text-transparent truncate">
-              Job Seeker
+              Seeker
               </span>
             </Link>
 

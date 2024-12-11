@@ -5,15 +5,19 @@ import Reviews from "./Reviews";
 import Contact from "./Contact";
 
 import WebsiteReview from "./WebsiteReview";
+import AnimationBanner from "./AnimationBanner";
+import Category from "./Category";
 
 const Home = () => {
   return (
     <div>
-      <Banner />
+      {/* <Banner /> */}
+      <AnimationBanner></AnimationBanner>
+      <Category></Category>
 
-      <Contact></Contact>
-      <Reviews />
-      <WebsiteReview></WebsiteReview>
+      {/* <Contact></Contact> */}
+      {/* <Reviews /> */}
+      {/* <WebsiteReview></WebsiteReview> */}
     </div>
   );
 };
