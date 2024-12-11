@@ -1,5 +1,5 @@
 import React from "react";
-import { FaLaptopCode, FaStethoscope, FaBook, FaMoneyBillWave, FaBuilding, FaTools, FaChalkboardTeacher, FaTruck, FaChartLine } from "react-icons/fa";
+import { FaLaptopCode, FaStethoscope, FaBook, FaMoneyBillWave, FaBuilding, FaTools, FaChalkboardTeacher, FaTruck, FaChartLine, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Category = () => {
@@ -51,6 +51,51 @@ const Category = () => {
             </div>
           </Link>
         ))}
+      </div>
+
+
+      <div className="flex flex-col md:flex-row items-center gap-6 my-8">
+        {/* Left Image */}
+        <div className="flex-1">
+          <img
+            src="https://media.istockphoto.com/id/2148382814/vector/man-and-woman-planting-a-tree.jpg?s=612x612&w=0&k=20&c=8dcG-JFNVwacL5GTtmwqP0tOZ0PlbgGZNibFu4HuS3g="
+            alt="Planting a tree"
+            className="w-full "
+          />
+        </div>
+
+        {/* Center Content */}
+        <div className="flex-1 text-center md:text-left">
+          <p className="text-[#247ba0] text-xl font-semibold uppercase">
+            WE ARE
+          </p>
+          <h2 className="text-4xl md:text-6xl font-bold text-[#1b98e0] mt-2">
+            HIRING
+          </h2>
+        </div>
+
+        {/* Right Content */}
+        <div className="flex-1 text-center md:text-left space-y-4">
+          <p className="text-xl md:text-2xl font-medium text-[#006494]">
+            Let’s <span className="text-[#1b98e0] font-bold">Work</span> Together
+          </p>
+          <p className="text-xl md:text-2xl font-medium text-[#006494]">
+            & <span className="text-[#1b98e0] font-bold">Explore</span>{" "}
+            Opportunities
+          </p>
+          <button className="mt-4 bg-[#1b98e0] text-white px-6 py-2 rounded-full shadow-lg hover:bg-[#247ba0] transition duration-300 flex items-center justify-center gap-2">
+            Apply Now <FaArrowRight />
+          </button>
+        </div>
+
+        {/* Right Image */}
+        <div className="flex-1">
+          <img
+            src="https://media.istockphoto.com/id/1346611118/vector/scene-with-business-people-working-in-the-office.jpg?s=612x612&w=0&k=20&c=NH5XYaUYJan2QuqR6zHC0AFT8D29Cd6ynMqxExPm4kA="
+            alt="Office Work"
+            className="w-full "
+          />
+        </div>
       </div>
     </div>
   );
