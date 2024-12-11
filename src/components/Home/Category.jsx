@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaLaptopCode, FaStethoscope, FaBook, FaMoneyBillWave, FaBuilding, FaTools, FaChalkboardTeacher, FaTruck, FaChartLine, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Aos from "aos";
+import { div } from "motion/react-client";
+import { motion } from "framer-motion";
 
 const Category = () => {
   const categoryData = [
@@ -15,8 +18,12 @@ const Category = () => {
     { icon: <FaChartLine />, title: "Sales & Marketing", available: 950, path: "/category/sales-marketing" },
   ];
 
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
   return (
-    <div className="w-11/12 max-w-screen-xl mx-auto py-10">
+    <div className="w-11/12 max-w-screen-xl mx-auto py-10" data-aos="zoom-in-up">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-[#1b98e0]">
@@ -30,26 +37,29 @@ const Category = () => {
       {/* Categories Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {categoryData.map((item, index) => (
-          <Link
-            to={item.path}
-            key={index}
-            className=" p-6 rounded-xl border-[1px] text-[#247ba0]   shadow-lg flex justify-center items-center gap-4 hover:bg-[#ecedf2] cursor-pointer transition duration-300 hover:scale-105"
-          >
-            {/* Icon */}
-            <div className="w-16 h-16 bg-[#006494] flex items-center justify-center rounded-full text-white text-3xl">
-              {item.icon}
-            </div>
+                <div  data-aos="flip-up">
+                        <Link
+         
+         to={item.path}
+         key={index}
+         className=" p-6 rounded-xl border-[1px] text-[#247ba0]   shadow-lg flex justify-center items-center gap-4 hover:bg-[#ecedf2] cursor-pointer transition duration-300 hover:scale-105"
+       >
+         {/* Icon */}
+         <div className="w-16 h-16 bg-[#006494] flex items-center justify-center rounded-full text-white text-3xl">
+           {item.icon}
+         </div>
 
-            {/* Content */}
-            <div className="">
-              <h3 className="text-lg md:text-xl font-bold ">
-                {item.title}
-              </h3>
-              <p className="text-sm md:text-base ">
-                {item.available} jobs available
-              </p>
-            </div>
-          </Link>
+         {/* Content */}
+         <div className="">
+           <h3 className="text-lg md:text-xl font-bold ">
+             {item.title}
+           </h3>
+           <p className="text-sm md:text-base ">
+             {item.available} jobs available
+           </p>
+         </div>
+       </Link>
+                </div>
         ))}
       </div>
 
@@ -57,22 +67,43 @@ const Category = () => {
       <div className="flex flex-col md:flex-row items-center gap-6 my-8">
         {/* Left Image */}
         <div className="flex-1">
-          <img
-            src="https://media.istockphoto.com/id/2148382814/vector/man-and-woman-planting-a-tree.jpg?s=612x612&w=0&k=20&c=8dcG-JFNVwacL5GTtmwqP0tOZ0PlbgGZNibFu4HuS3g="
-            alt="Planting a tree"
-            className="w-full "
-          />
-        </div>
+      <motion.img
+        src="https://media.istockphoto.com/id/2148382814/vector/man-and-woman-planting-a-tree.jpg?s=612x612&w=0&k=20&c=8dcG-JFNVwacL5GTtmwqP0tOZ0PlbgGZNibFu4HuS3g="
+        alt="Planting a tree"
+        className="w-full"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.8,
+          ease: "easeOut",
+        }}
+        whileHover={{
+          scale: 1.05,
+          transition: { duration: 0.4 },
+        }}
+      />
+    </div>
 
         {/* Center Content */}
-        <div className="flex-1 text-center md:text-left">
+        <motion.div className="flex-1 text-center md:text-left"
+         initial={{ opacity: 0, scale: 0.8 }}
+         animate={{ opacity: 1, scale: 1 }}
+         transition={{
+           duration: 0.8,
+           ease: "easeOut",
+         }}
+         whileHover={{
+           scale: 1.05,
+           transition: { duration: 0.4 },
+         }}
+        >
           <p className="text-[#247ba0] text-xl font-semibold uppercase">
             WE ARE
           </p>
           <h2 className="text-4xl md:text-6xl font-bold text-[#1b98e0] mt-2">
             HIRING
           </h2>
-        </div>
+        </motion.div>
 
         {/* Right Content */}
         <div className="flex-1 text-center md:text-left space-y-4">
@@ -90,8 +121,20 @@ const Category = () => {
 
         {/* Right Image */}
         <div className="flex-1">
-          <img
-            src="https://media.istockphoto.com/id/1346611118/vector/scene-with-business-people-working-in-the-office.jpg?s=612x612&w=0&k=20&c=NH5XYaUYJan2QuqR6zHC0AFT8D29Cd6ynMqxExPm4kA="
+          <motion.img
+
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                }}
+                whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.4 },
+                }}
+                 
+                src="https://media.istockphoto.com/id/1346611118/vector/scene-with-business-people-working-in-the-office.jpg?s=612x612&w=0&k=20&c=NH5XYaUYJan2QuqR6zHC0AFT8D29Cd6ynMqxExPm4kA="
             alt="Office Work"
             className="w-full "
           />

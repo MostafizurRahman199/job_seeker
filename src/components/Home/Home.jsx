@@ -7,6 +7,7 @@ import Contact from "./Contact";
 import WebsiteReview from "./WebsiteReview";
 import AnimationBanner from "./AnimationBanner";
 import Category from "./Category";
+import Testimonial from "./Testimonial";
 
 const Home = () => {
   return (
@@ -14,6 +15,9 @@ const Home = () => {
       {/* <Banner /> */}
       <AnimationBanner></AnimationBanner>
       <Category></Category>
+     <div className="relative min-h-[700px] bg-[#f0f5f7]">
+     <Testimonial></Testimonial>
+     </div>
 
       {/* <Contact></Contact> */}
       {/* <Reviews /> */}
