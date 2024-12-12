@@ -11,6 +11,7 @@ import Testimonial from "./Testimonial";
 import FeaturedJobs from "./FeaturedJobs";
 import ResponsedBy from "./ResponsedBy";
 import StaticBanner from "./StaticBanner";
+import TodayJobs from "./TodayJobs";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <AnimationBanner></AnimationBanner>
       <Category></Category>
       <FeaturedJobs></FeaturedJobs>
+      <TodayJobs></TodayJobs>
      <div className="relative min-h-[700px] bg-[#f0f5f7]">
      <Testimonial></Testimonial>
      </div>

@@ -18,9 +18,16 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const { loginUser, googleSignIn } = useFirebaseAuth();
+
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || '/';
+
+    // // Access the "from" value safely
+    const from = location.state?.from || "/";
+    // console.log(location);
+    // console.log(from);
+
+
 
   const lottieRef = useRef(null);
 

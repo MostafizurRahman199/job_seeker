@@ -12,6 +12,7 @@ import Profile from "../pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import UpdateProfile from "../pages/UpdateProfile";
 import ErrorPage from "../pages/ErrorPage";
+import JobDetails from "../pages/jobDetails/JobDetails";
 
 
 const router = createBrowserRouter([    
@@ -70,14 +71,14 @@ const router = createBrowserRouter([
             },
            
             {
-                path: "/",
+                path: "/jobDetails/:id",
                 element: (
                     <>
                         <Helmet>
                             <title>Job Seeker - Add Review</title>
                         </Helmet>
                         <PrivateRoute>
-                           {/* write a component  */}
+                          <JobDetails></JobDetails>
                         </PrivateRoute>
                     </>
                 ),
