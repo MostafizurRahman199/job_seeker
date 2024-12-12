@@ -32,10 +32,11 @@ const JobApply = () => {
   });
 
   //________________________________Form state
-  
+
   const [formData, setFormData] = useState({
     applicantName: name,
     applicantEmail: email,
+    appliedAt : new Date(),
     jobId: id,
     linkedIn: "",
     github: "",
@@ -99,7 +100,10 @@ const JobApply = () => {
     e.preventDefault();
   
     //______________Submit the form
-    mutation.mutate(formData);
+    mutation.mutate({
+      ...formData,
+      appliedAt: new Date(),
+    });
 
 
     setFormData({

@@ -14,6 +14,7 @@ import UpdateProfile from "../pages/UpdateProfile";
 import ErrorPage from "../pages/ErrorPage";
 import JobDetails from "../pages/jobDetails/JobDetails";
 import JobApply from "../pages/jobApply/JobApply";
+import MyAppliedJob from "../pages/myAppliedJob/MyAppliedJob";
 
 
 const router = createBrowserRouter([    
@@ -94,6 +95,19 @@ const router = createBrowserRouter([
                         </Helmet>
                         <PrivateRoute>
                           <JobApply></JobApply>
+                        </PrivateRoute>
+                    </>
+                ),
+            },
+            {
+                path: "/applied-job",
+                element: (
+                    <>
+                        <Helmet>
+                            <title>Job Seeker - Applied Job</title>
+                        </Helmet>
+                        <PrivateRoute>
+                          <MyAppliedJob></MyAppliedJob>
                         </PrivateRoute>
                     </>
                 ),

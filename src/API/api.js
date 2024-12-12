@@ -48,3 +48,13 @@ export const postJobApplication = async (data) => {
     handleError(error);
   }
 };
+
+
+export const getAppliedJob = async (email) => {
+    try {
+      const response = await api.get(`/applied-job/${email}`);
+      return handleResponse(response);
+    } catch (error) {
+      handleError(error);
+    }
+  };

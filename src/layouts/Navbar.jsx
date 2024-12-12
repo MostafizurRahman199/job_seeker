@@ -209,8 +209,8 @@ const Navbar = () => {
               </Link>
 
 
-              <Link to="/myReview" className={getLinkStyle('/myReview')} onClick={() => setActiveLink('/addReview')}>
-                <FaUser className="lg:inline-block mr-1" /> My Review
+              <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/addReview')}>
+                <FaUser className="lg:inline-block mr-1" /> My Applied Job
               </Link>
               
               <Link to="/gameWatchList" className={getLinkStyle('/gameWatchList')} onClick={() => setActiveLink('/gameWatchList')}>
@@ -355,14 +355,14 @@ const Navbar = () => {
 
 
            <Link 
-            to="/myReview" 
-            className={`block ${getLinkStyle('/myReview')}`}
+            to="/applied-job" 
+            className={`block ${getLinkStyle('/applied-job')}`}
             onClick={() => {
-              setActiveLink('/myReview');
+              setActiveLink('/applied-job');
               setIsMobileMenuOpen(false);
             }}
           >
-            <FaUser className="inline-block mr-1" /> My Review
+            <FaUser className="inline-block mr-1" /> My Applied Job
           </Link>
 
            <Link 
@@ -554,8 +554,8 @@ export default Navbar
 //                 <Link to="/addReview" className={getLinkStyle('/addReview')} onClick={() => setActiveLink('/addReview')}>
 //                   <MdAddBox className="mr-1" /> Add Review
 //                 </Link>
-//                 <Link to="/myReview" className={getLinkStyle('/myReview')} onClick={() => setActiveLink('/myReview')}>
-//                   <FaUser className="mr-1" /> My Review
+//                 <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/applied-job')}>
+//                   <FaUser className="mr-1" /> My Applied Job
 //                 </Link>
 //                 <Link to="/gameWatchList" className={getLinkStyle('/gameWatchList')} onClick={() => setActiveLink('/gameWatchList')}>
 //                   <IoGameControllerOutline className="mr-1" /> Game WatchList
@@ -614,8 +614,8 @@ export default Navbar
 //               <Link to="/addReview" className={getLinkStyle('/addReview')} onClick={() => setActiveLink('/addReview')}>
 //                 <MdAddBox className="mr-1" /> Add Review
 //               </Link>
-//               <Link to="/myReview" className={getLinkStyle('/myReview')} onClick={() => setActiveLink('/myReview')}>
-//                 <FaUser className="mr-1" /> My Review
+//               <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/applied-job')}>
+//                 <FaUser className="mr-1" /> My Applied Job
 //               </Link>
 //               <Link to="/gameWatchList" className={getLinkStyle('/gameWatchList')} onClick={() => setActiveLink('/gameWatchList')}>
 //                 <IoGameControllerOutline className="mr-1" /> Game WatchList
