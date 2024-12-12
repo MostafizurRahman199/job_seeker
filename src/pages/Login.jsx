@@ -24,6 +24,7 @@ const Login = () => {
 
     // // Access the "from" value safely
     const from = location.state?.from || "/";
+    
     // console.log(location);
     // console.log(from);
 

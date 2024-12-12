@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../../components/Error.jsx/ErrorPage";
 import { fetchJobDetails } from "../../API/api";
@@ -43,7 +43,9 @@ const JobDetails = () => {
       <JobResponsibilities responsibilities={job.responsibilities} />
       <ContactInfo hrName={job.hr_name} hrEmail={job.hr_email} />
       <div className="mt-6 text-center">
-        <motion.button className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition duration-300"
+
+       <Link to={`/jobApply/${job._id}`}>
+       <motion.button  className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition duration-300"
         
         
         animate={{ scale:[0.8,1,0.8]}}
@@ -55,6 +57,7 @@ const JobDetails = () => {
         >
           Apply Now
         </motion.button>
+       </Link>
       </div>
     </div>
   );

@@ -1,33 +1,50 @@
 import axios from "axios";
 
-
+// Create an Axios instance
 const api = axios.create({
-    baseURL : "http://localhost:5000",
+     baseURL : import.meta.env.VITE_API_BASE_URL  || "http://localhost:5000",
 });
 
-export const fetchJobs = async()=>{
-    try {
-        const response = await api.get("/jobs");
-        if (response.status === 200) {
-          return response.data; 
-        }
-        return []; 
-      } catch (error) {
-        console.log(error.message);
-        return []; 
-      }
-}
+// Helper function to handle responses
+const handleResponse = (response) => {
+  if (response.status >= 200 && response.status < 300) {
+    return response.data;
+  }
+  throw new Error(`HTTP Error: ${response.status}`);
+};
 
+// Helper function to handle errors
+const handleError = (error) => {
+  console.error("API Error:", error.message);
+  throw error; // Rethrow the error for the caller to handle
+};
 
-export const fetchJobDetails = async(id)=>{
-    try {
-        const response = await api.get(`/jobDetails/${id}`);
-        if (response.status === 200) {
-          return response.data; 
-        }
-        return []; 
-      } catch (error) {
-        console.log(error.message);
-        return []; 
-      }
-}
+// Fetch all jobs
+export const fetchJobs = async () => {
+  try {
+    const response = await api.get("/jobs");
+    return handleResponse(response);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+// Fetch job details by ID
+export const fetchJobDetails = async (id) => {
+  try {
+    const response = await api.get(`/jobDetails/${id}`);
+    return handleResponse(response);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+// Post a job application
+export const postJobApplication = async (data) => {
+  try {
+    const response = await api.post(`/job-applications`, data);
+    return handleResponse(response);
+  } catch (error) {
+    handleError(error);
+  }
+};
