@@ -15,6 +15,8 @@ import ErrorPage from "../pages/ErrorPage";
 import JobDetails from "../pages/jobDetails/JobDetails";
 import JobApply from "../pages/jobApply/JobApply";
 import MyAppliedJob from "../pages/myAppliedJob/MyAppliedJob";
+import Addjob from "../pages/addjob/Addjob";
+import AllJobs from "../pages/AllJob/AllJobs";
 
 
 const router = createBrowserRouter([    
@@ -77,10 +79,24 @@ const router = createBrowserRouter([
                 element: (
                     <>
                         <Helmet>
-                            <title>Job Seeker - Add Review</title>
+                            <title>Job Seeker - Job Details</title>
                         </Helmet>
                         <PrivateRoute>
                           <JobDetails></JobDetails>
+                        </PrivateRoute>
+                    </>
+                ),
+            },
+           
+            {
+                path: "/addJob",
+                element: (
+                    <>
+                        <Helmet>
+                            <title>Job Seeker - Add Job</title>
+                        </Helmet>
+                        <PrivateRoute>
+                          <Addjob></Addjob>
                         </PrivateRoute>
                     </>
                 ),
@@ -148,6 +164,17 @@ const router = createBrowserRouter([
                             <title>Job Seeker - Login</title>
                         </Helmet>
                         <Login />
+                    </>
+                ),
+            },
+            {
+                path: "/allJob",
+                element: (
+                    <>
+                        <Helmet>
+                            <title>Job Seeker - All Job</title>
+                        </Helmet>
+                        <AllJobs></AllJobs>
                     </>
                 ),
             },

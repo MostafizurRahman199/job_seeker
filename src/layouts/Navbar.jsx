@@ -200,16 +200,16 @@ const Navbar = () => {
               <FaHome className="lg:inline-block mr-1" /> Home
             </Link>
 
-            <Link to="/allReviews" className={getLinkStyle('/allReviews')} onClick={() => setActiveLink('/allReviews')}>
-              <VscOpenPreview className="lg:inline-block mr-1"/> All Reviews
+            <Link to="/allJob" className={getLinkStyle('/allJob')} onClick={() => setActiveLink('/allJob')}>
+              <VscOpenPreview className="lg:inline-block mr-1"/> All Job
             </Link>
 
-              <Link to="/addReview" className={getLinkStyle('/addReview')} onClick={() => setActiveLink('/addReview')}>
-                <MdAddBox className="lg:inline-block mr-1"/> Add Review
+              <Link to="/addJob" className={getLinkStyle('/addJob')} onClick={() => setActiveLink('/addJob')}>
+                <MdAddBox className="lg:inline-block mr-1"/> Add Job
               </Link>
 
 
-              <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/addReview')}>
+              <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/addJob')}>
                 <FaUser className="lg:inline-block mr-1" /> My Applied Job
               </Link>
               
@@ -331,10 +331,10 @@ const Navbar = () => {
           </Link>
 
           <Link 
-            to="/allReviews" 
-            className={`block ${getLinkStyle('/allReviews')}`}
+            to="/allJob" 
+            className={`block ${getLinkStyle('/allJob')}`}
             onClick={() => {
-              setActiveLink('/allReviews');
+              setActiveLink('/allJob');
               setIsMobileMenuOpen(false);
             }}
           >
@@ -343,10 +343,10 @@ const Navbar = () => {
 
 
            <Link 
-            to="/addReview" 
-            className={`block ${getLinkStyle('/addReview')}`}
+            to="/addJob" 
+            className={`block ${getLinkStyle('/addJob')}`}
             onClick={() => {
-              setActiveLink('/addReview');
+              setActiveLink('/addJob');
               setIsMobileMenuOpen(false);
             }}
           >
@@ -545,13 +545,13 @@ export default Navbar
 //             <Link to="/" className={getLinkStyle('/')} onClick={() => setActiveLink('/')}>
 //               <FaHome className="mr-1" /> Home
 //             </Link>
-//             <Link to="/allReviews" className={getLinkStyle('/allReviews')} onClick={() => setActiveLink('/allReviews')}>
+//             <Link to="/allJob" className={getLinkStyle('/allJob')} onClick={() => setActiveLink('/allJob')}>
 //               <VscOpenPreview className="mr-1" /> All Reviews
 //             </Link>
 
 //             {user && (
 //               <>
-//                 <Link to="/addReview" className={getLinkStyle('/addReview')} onClick={() => setActiveLink('/addReview')}>
+//                 <Link to="/addJob" className={getLinkStyle('/addJob')} onClick={() => setActiveLink('/addJob')}>
 //                   <MdAddBox className="mr-1" /> Add Review
 //                 </Link>
 //                 <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/applied-job')}>
@@ -605,13 +605,13 @@ export default Navbar
 //           <Link to="/" className={getLinkStyle('/')} onClick={() => setActiveLink('/')}>
 //             <FaHome className="mr-1" /> Home
 //           </Link>
-//           <Link to="/allReviews" className={getLinkStyle('/allReviews')} onClick={() => setActiveLink('/allReviews')}>
+//           <Link to="/allJob" className={getLinkStyle('/allJob')} onClick={() => setActiveLink('/allJob')}>
 //             <FaTags className="mr-1" /> All Reviews
 //           </Link>
 
 //           {user && (
 //             <>
-//               <Link to="/addReview" className={getLinkStyle('/addReview')} onClick={() => setActiveLink('/addReview')}>
+//               <Link to="/addJob" className={getLinkStyle('/addJob')} onClick={() => setActiveLink('/addJob')}>
 //                 <MdAddBox className="mr-1" /> Add Review
 //               </Link>
 //               <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/applied-job')}>
