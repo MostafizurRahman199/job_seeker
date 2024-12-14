@@ -86,20 +86,24 @@ const MyJobPost = () => {
         <table className="w-full text-left border-collapse">
           <thead className="bg-[#006494] text-white">
             <tr>
+              <th className="p-4">Serial</th>
               <th className="p-4">Title</th>
               <th className="p-4">Location</th>
               <th className="p-4">Type</th>
               <th className="p-4">Category</th>
+              <th className="p-4">Application Count</th>
               <th className="p-4">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {jobs.map((job) => (
+            {jobs.map((job, index) => (
               <tr key={job.id} className="hover:bg-gray-100">
+                <td className="p-4">{index + 1}</td>
                 <td className="p-4">{job.title}</td>
                 <td className="p-4">{job.location}</td>
                 <td className="p-4">{job.jobType}</td>
                 <td className="p-4">{job.category}</td>
+                <td className="p-4">{job?.applicationCount || "N/A"}</td>
                 <td className="p-4 flex gap-2">
                   <button onClick={() => handleEdit(job._id)} className="btn btn-warning  btn-circle ">
                     <FaEdit />

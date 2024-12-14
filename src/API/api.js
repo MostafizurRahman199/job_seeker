@@ -121,9 +121,15 @@ export const getAppliedJob = async (email) => {
       handleError(error);
     }
   };
-export const deleteAppliedJob = async (id) => {
+
+
+export const deleteAppliedJob = async (id, jobId) => {
     try {
-      const response = await api.delete(`/applied-job/${id}`);
+      
+      // console.log("id : ", id)
+      // console.log("jobId : ", jobId);
+
+      const response = await api.delete(`/applied-job/${id}?jobId=${jobId}`);
       return handleResponse(response);
     } catch (error) {
       handleError(error);
