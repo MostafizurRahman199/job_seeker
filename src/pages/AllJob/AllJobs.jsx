@@ -18,9 +18,7 @@ const AllJobs = () => {
 
   // Filter jobs
   const filteredJobs = jobs?.filter((job) => {
-    const matchesSearch = job.title
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+    const matchesSearch = job?.title?.toLowerCase()?.includes(searchQuery.toLowerCase());
     const matchesJobType = jobType ? job.jobType === jobType : true;
     const matchesCategory = category ? job.category === category : true;
 
@@ -86,7 +84,7 @@ const AllJobs = () => {
 
       {/* Job Listings */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {filteredJobs.map((job) => (
+        {filteredJobs?.map((job) => (
           <div
             key={job._id}
             className="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition duration-300"
@@ -115,11 +113,11 @@ const AllJobs = () => {
               <p className="text-gray-600 mb-2">
                 <span className="font-bold">Salary:</span>{" "}
                 {job.salaryRange.min}-{job.salaryRange.max}{" "}
-                {job.salaryRange.currency.toUpperCase()}
+                {job.salaryRange.currency?.toUpperCase()}
               </p>
               <p className="text-gray-600 mb-2">
                 <span className="font-bold">Deadline:</span>{" "}
-                {new Date(job.applicationDeadline).toLocaleDateString()}
+                {new Date(job.applicationDeadline)?.toLocaleDateString()}
               </p>
             </div>
             <div className="mt-4 flex justify-center">

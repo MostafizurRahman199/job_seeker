@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { deleteMyJobPost, myJobPost } from "../../API/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyJobPost = () => {
   const { user } = useFirebaseAuth();
@@ -79,7 +79,7 @@ const MyJobPost = () => {
   }
 
   return (
-    <div className="p-6 w-full sm:w-10/12 lg:w-8/12 mx-auto my-10">
+    <div className="min-h-screen p-6 w-full sm:w-10/12 lg:w-10/12 mx-auto my-10">
       <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">My Job Posts ({jobs.length})</h1>
 
       <div className="overflow-x-auto bg-white rounded-lg shadow-lg">
@@ -92,6 +92,7 @@ const MyJobPost = () => {
               <th className="p-4">Type</th>
               <th className="p-4">Category</th>
               <th className="p-4">Application Count</th>
+              <th className="p-4">View Application</th>
               <th className="p-4">Actions</th>
             </tr>
           </thead>
@@ -104,11 +105,12 @@ const MyJobPost = () => {
                 <td className="p-4">{job.jobType}</td>
                 <td className="p-4">{job.category}</td>
                 <td className="p-4">{job?.applicationCount || "N/A"}</td>
+                <td className="p-4"><Link to={`/viewJobApplication/${job._id}`} className="btn">View</Link></td>
                 <td className="p-4 flex gap-2">
-                  <button onClick={() => handleEdit(job._id)} className="btn btn-warning  btn-circle ">
-                    <FaEdit />
+                  <button onClick={() => handleEdit(job._id)} className="btn  btn-circle ">
+                    <FaEdit className="text-yellow-900 text-xl" />
                   </button>
-                  <button onClick={() => handleDelete(job._id)} className="btn btn-circle">
+                  <button onClick={() => handleDelete(job._id)} className="btn btn-circle ">
                    ❌
                   </button>
                 </td>

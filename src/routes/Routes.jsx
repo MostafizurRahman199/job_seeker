@@ -19,6 +19,7 @@ import Addjob from "../pages/addjob/Addjob";
 import AllJobs from "../pages/AllJob/AllJobs";
 import MyJobPost from "../pages/MyJobPost/MyJobPost";
 import EditJobPost from "../pages/MyJobPost/EditJobPost";
+import ViewJobApplication from "../pages/viewJobApplication/ViewJobApplication";
 
 
 const router = createBrowserRouter([    
@@ -226,6 +227,19 @@ const router = createBrowserRouter([
                         </Helmet>
                         <PrivateRoute>
                           <EditJobPost></EditJobPost>
+                        </PrivateRoute>
+                    </>
+                ),
+            },
+            {
+                path: "viewJobApplication/:jobId",
+                element: (
+                    <>
+                        <Helmet>
+                            <title>Job Seeker - View Job Application</title>
+                        </Helmet>
+                        <PrivateRoute>
+                         <ViewJobApplication></ViewJobApplication>
                         </PrivateRoute>
                     </>
                 ),

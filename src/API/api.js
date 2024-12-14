@@ -41,6 +41,30 @@ export const myJobPost = async (email) => {
 
 
 
+export const getJobApplication = async (jobId) => {
+  try {
+    
+    const response = await api.get(`/viewJobApplication/${jobId}`);
+
+    return handleResponse(response);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+
+export const updateJobApplicationStatus = async (id, statusData) => {
+  try {
+    
+    // console.log(id, statusData.status);
+    const response = await api.patch(`/jobApplication-view/${id}`, {statusData});
+
+    return handleResponse(response);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
 
 
 // end my posted job
@@ -147,3 +171,4 @@ export const deleteAppliedJob = async (id, jobId) => {
       handleError(error);
     }
   };
+
