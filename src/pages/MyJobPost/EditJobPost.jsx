@@ -1,143 +1,165 @@
-import React, { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { postAddJob } from "../../API/api";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { fetchJobDetails, updateJobPost } from "../../API/api";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 import { useFirebaseAuth } from "../../Auth/AuthProvider";
+import Loading from "../../components/Loading/Loading";
+import ErrorPage from "../../components/Error.jsx/ErrorPage";
 
-const AddJob = () => {
-
-const {user} = useFirebaseAuth();
-const addJobOwnerName = user.displayName;
-const addJobOwnerEmail = user.email;
-
+const EditJobPost = () => {
+  const navigate = useNavigate();
+  const { id } = useParams(); // Getting job ID from the URL parameters
+  const{user} = useFirebaseAuth();
+  const name = user.displayName;
+  const email = user.email;
 
   const [formData, setFormData] = useState({
-    addJobOwnerName : user.displayName,
-    addJobOwnerEmail : user.email,
-    title: "",
-    location: "",
-    jobType: "",
-    category: "",
-    applicationDeadline: "",
-    salaryRange: {
-      min: "",
-      max: "",
-      currency: "",
-    },
-    description: "",
-    company: "",
-    requirements: "",
-    responsibilities: "",
-    hr_email: "",
-    hr_name: "",
-    company_logo: "",
+    title: '',
+    location: '',
+    jobType: '',
+    category: '',
+    applicationDeadline: '',
+    salaryRangeMin: '',
+    salaryRangeMax: '',
+    salaryRangeCurrency: '',
+    description: '',
+    company: '',
+    hr_name: '',
+    hr_email: '',
+    requirements: '',
+    responsibilities: '',
+    company_logo: '',
+    addJobOwnerName: '', // Add Job Owner Name
+    addJobOwnerEmail: '' // Add Job Owner Email
   });
 
+  // Fetch job details using the job ID
+  const { data: selectedJob, isLoading, isError } = useQuery({
+    queryKey: ["fetchJobDetails", id],
+    queryFn: () => fetchJobDetails(id),
+  });
 
-const navigate = useNavigate();
-
-  const mutation = useMutation({
-    mutationFn: (newJob) => postAddJob(newJob),
+  // Update job post mutation
+  const updateMutation = useMutation({
+    // mutationFn now receives both updatedFormData and the job id
+    mutationFn: (updatedData) => updateJobPost(updatedData, id),
     onSuccess: () => {
       Swal.fire({
-        position: "top-center",
         icon: "success",
-        title: "Added New Job Successfully",
+        title: "Job post updated successfully!",
         showConfirmButton: false,
         timer: 1500,
       });
-
-      
-      navigate("/");
-      setFormData(
-        {
-            addJobOwnerName : user.displayName,
-            addJobOwnerEmail : user.email,
-            title: "",
-            location: "",
-            jobType: "",
-            category: "",
-            applicationDeadline: "",
-            salaryRange: {
-              min: "",
-              max: "",
-              currency: "",
-            },
-            description: "",
-            company: "",
-            requirements: "",
-            responsibilities: "",
-            hr_email: "",
-            hr_name: "",
-            company_logo: "",
-          }
-      )
+      navigate("/myJobPost"); // Redirect back to the job list
     },
     onError: (error) => {
       Swal.fire({
-        position: "top-center",
         icon: "error",
-        title: "Something went wrong. Try again!",
-        showConfirmButton: false,
-        timer: 1500,
+        title: "Failed to update job!",
+        text: error.message,
+        showConfirmButton: true,
       });
     },
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "min" || name === "max" || name === "currency") {
+  // Set the form data when job details are loaded
+  useEffect(() => {
+    if (selectedJob) {
       setFormData({
-        ...formData,
-        salaryRange: { ...formData.salaryRange, [name]: value },
+        title: selectedJob.title || '',
+        location: selectedJob.location || '',
+        jobType: selectedJob.jobType || '',
+        category: selectedJob.category || '',
+        applicationDeadline: selectedJob.applicationDeadline || '',
+        salaryRangeMin: selectedJob.salaryRange?.min || '',
+        salaryRangeMax: selectedJob.salaryRange?.max || '',
+        salaryRangeCurrency: selectedJob.salaryRange?.currency || '',
+        description: selectedJob.description || '',
+        company: selectedJob.company || '',
+        hr_name: selectedJob.hr_name || '',
+        hr_email: selectedJob.hr_email || '',
+        requirements: selectedJob.requirements?.join(", ") || '',
+        responsibilities: selectedJob.responsibilities?.join(", ") || '',
+        company_logo: selectedJob.company_logo || '',
+        addJobOwnerName: name || '', // Add Job Owner Name
+        addJobOwnerEmail: email || '' // Add Job Owner Email
       });
-    } else {
-      setFormData({ ...formData, [name]: value });
     }
+  }, [selectedJob]);
+
+  // Handle input change for form fields
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    mutation.mutate({
+  // Handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Split comma-separated strings back into arrays
+    const updatedFormData = {
       ...formData,
-      requirements: formData.requirements.split(","), 
-      responsibilities: formData.responsibilities.split(","), 
-    });
+      requirements: formData.requirements.split(",").map(req => req.trim()),
+      responsibilities: formData.responsibilities.split(",").map(res => res.trim())
+    };
+
+    // Now include updatedFormData in the mutation
+    updateMutation.mutate(updatedFormData);
   };
+
+  if (isLoading) {
+    return (
+      <Loading></Loading>
+    );
+  }
+
+  if (isError) {
+    return (
+      <ErrorPage></ErrorPage>
+    );
+  }
 
   return (
     <div className="p-6 w-full sm:w-10/12 lg:w-8/12 mx-auto my-10">
-      <h1 className="text-5xl font-extrabold text-center bg-gradient-to-r from-[#1b98e0] to-[#006494] text-transparent bg-clip-text mb-8">Post a New Job</h1>
+      <h1 className="text-5xl font-extrabold text-center bg-gradient-to-r from-[#1b98e0] to-[#006494] text-transparent bg-clip-text mb-8">Update Job Post</h1>
       <form
         onSubmit={handleSubmit}
-        className=" shadow-lg rounded-lg p-8 space-y-6"
+        className="shadow-lg rounded-lg p-8 space-y-6"
       >
-        <div>
-          <label className="block text-lg font-semibold">Your Name</label>
+
+
+
+     {/* Add Job Owner Name */}
+     <div>
+          <label className="block text-lg font-semibold">Name</label>
           <input
             type="text"
-            name="title"
+            name="addJobOwnerName"
             value={formData.addJobOwnerName}
+            // onChange={handleInputChange}
             readOnly
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            // required
           />
         </div>
 
+        {/* Add Job Owner Email */}
         <div>
-          <label className="block text-lg font-semibold">Your Email</label>
+          <label className="block text-lg font-semibold">Email</label>
           <input
-            type="text"
-            name="title"
+            type="email"
+            name="addJobOwnerEmail"
             value={formData.addJobOwnerEmail}
             readOnly
+            // onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            // required
           />
         </div>
+
 
         <div>
           <label className="block text-lg font-semibold">Job Title</label>
@@ -145,7 +167,7 @@ const navigate = useNavigate();
             type="text"
             name="title"
             value={formData.title}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
@@ -157,7 +179,7 @@ const navigate = useNavigate();
             type="text"
             name="location"
             value={formData.location}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
@@ -168,7 +190,7 @@ const navigate = useNavigate();
           <select
             name="jobType"
             value={formData.jobType}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           >
@@ -186,7 +208,7 @@ const navigate = useNavigate();
           <select
             name="category"
             value={formData.category}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           >
@@ -206,40 +228,38 @@ const navigate = useNavigate();
             type="date"
             name="applicationDeadline"
             value={formData.applicationDeadline}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
         </div>
-
-       
 
         <div>
           <label className="block text-lg font-semibold">Salary Range</label>
           <div className="flex space-x-2">
             <input
               type="number"
-              name="min"
-              value={formData.salaryRange.min}
-              onChange={handleChange}
+              name="salaryRangeMin"
+              value={formData.salaryRangeMin}
+              onChange={handleInputChange}
               placeholder="Min"
               className="w-1/3 p-2 border rounded"
               required
             />
             <input
               type="number"
-              name="max"
-              value={formData.salaryRange.max}
-              onChange={handleChange}
+              name="salaryRangeMax"
+              value={formData.salaryRangeMax}
+              onChange={handleInputChange}
               placeholder="Max"
               className="w-1/3 p-2 border rounded"
               required
             />
             <input
               type="text"
-              name="currency"
-              value={formData.salaryRange.currency}
-              onChange={handleChange}
+              name="salaryRangeCurrency"
+              value={formData.salaryRangeCurrency}
+              onChange={handleInputChange}
               placeholder="Currency"
               className="w-1/3 p-2 border rounded"
               required
@@ -252,7 +272,7 @@ const navigate = useNavigate();
           <textarea
             name="description"
             value={formData.description}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           ></textarea>
@@ -264,7 +284,7 @@ const navigate = useNavigate();
             type="text"
             name="company"
             value={formData.company}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
@@ -276,9 +296,8 @@ const navigate = useNavigate();
             type="text"
             name="requirements"
             value={formData.requirements}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            required
           />
         </div>
 
@@ -288,67 +307,39 @@ const navigate = useNavigate();
             type="text"
             name="responsibilities"
             value={formData.responsibilities}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-lg font-semibold">HR Email</label>
-          <input
-            type="email"
-            name="hr_email"
-            value={formData.hr_email}
-            onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-lg font-semibold">HR Name</label>
-          <input
-            type="text"
-            name="hr_name"
-            value={formData.hr_name}
-            onChange={handleChange}
-            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            required
           />
         </div>
 
         <div>
           <label className="block text-lg font-semibold">Company Logo URL</label>
           <input
-            type="url"
+            type="text"
             name="company_logo"
             value={formData.company_logo}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            required
           />
         </div>
 
-      
-
-        <button
+       <div className="flex gap-2">
+       <Link to={"/myJobPost"}
           type="submit"
-          className="bg-gradient-to-r from-[#1b98e0] to-[#006494] text-white font-bold px-6 py-3 rounded-lg hover:shadow-lg transition-all"
+          className="w-fit p-4 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600"
         >
-          Post Job
+          Cancel 
+        </Link>
+       <button
+          type="submit"
+          className="w-fit p-4 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600"
+        >
+          Update Job
         </button>
+       </div>
       </form>
     </div>
   );
 };
 
-export default AddJob;
-
-
-
-
-
-
-
-
+export default EditJobPost;

@@ -17,6 +17,8 @@ import JobApply from "../pages/jobApply/JobApply";
 import MyAppliedJob from "../pages/myAppliedJob/MyAppliedJob";
 import Addjob from "../pages/addjob/Addjob";
 import AllJobs from "../pages/AllJob/AllJobs";
+import MyJobPost from "../pages/MyJobPost/MyJobPost";
+import EditJobPost from "../pages/MyJobPost/EditJobPost";
 
 
 const router = createBrowserRouter([    
@@ -198,6 +200,32 @@ const router = createBrowserRouter([
                         </Helmet>
                         <PrivateRoute>
                             <Profile />
+                        </PrivateRoute>
+                    </>
+                ),
+            },
+            {
+                path: "/myJobPost",
+                element: (
+                    <>
+                        <Helmet>
+                            <title>Job Seeker - My Posted Job</title>
+                        </Helmet>
+                        <PrivateRoute>
+                           <MyJobPost></MyJobPost>
+                        </PrivateRoute>
+                    </>
+                ),
+            },
+            {
+                path: "/edit-job-post/:id",
+                element: (
+                    <>
+                        <Helmet>
+                            <title>Job Seeker - My Posted Job</title>
+                        </Helmet>
+                        <PrivateRoute>
+                          <EditJobPost></EditJobPost>
                         </PrivateRoute>
                     </>
                 ),

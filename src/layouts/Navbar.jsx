@@ -212,6 +212,10 @@ const Navbar = () => {
               <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/addJob')}>
                 <FaUser className="lg:inline-block mr-1" /> My Applied Job
               </Link>
+
+              <Link to="/myJobPost" className={getLinkStyle('/myJobPost')} onClick={() => setActiveLink('/myJobPost')}>
+                <FaUser className="lg:inline-block mr-1" /> My Posted Job
+              </Link>
               
               <Link to="/gameWatchList" className={getLinkStyle('/gameWatchList')} onClick={() => setActiveLink('/gameWatchList')}>
                 <IoGameControllerOutline className="lg:inline-block mr-1" /> Game WatchList

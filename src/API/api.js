@@ -29,6 +29,43 @@ export const fetchJobs = async () => {
   }
 };
 
+// my posted job
+export const myJobPost = async (email) => {
+  try {
+    const response = await api.get(`/jobs/${email}`);
+    return handleResponse(response);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+
+
+
+
+// end my posted job
+
+export const deleteMyJobPost = async (id) => {
+  try {
+    const response = await api.delete(`/jobs/${id}`);
+    return handleResponse(response);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+
+// export const editMyJobPost = async (id) => {
+//   try {
+//     const response = await api.get(`/jobs/${id}`);
+//     return handleResponse(response);
+//   } catch (error) {
+//     handleError(error);
+//   }
+// };
+
+
+
 
 export const allJob = async () => {
   try {
@@ -39,6 +76,7 @@ export const allJob = async () => {
   }
 };
 
+
 // Fetch job details by ID
 export const fetchJobDetails = async (id) => {
   try {
@@ -48,6 +86,21 @@ export const fetchJobDetails = async (id) => {
     handleError(error);
   }
 };
+
+
+
+
+export const updateJobPost = async (updatedData, id ) => {
+  try {
+    console.log(updatedData)
+    const response = await api.put(`/jobs/${id}`, updatedData);
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating job post with ID: ${id}`, error);
+    throw error;
+  }
+};
+
 
 // Post a job application
 export const postJobApplication = async (data) => {
