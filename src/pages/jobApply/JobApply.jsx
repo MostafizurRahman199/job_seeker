@@ -12,14 +12,21 @@ import {
   FaBriefcase,
 } from "react-icons/fa";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { fetchJobDetails, postJobApplication } from "../../API/api";
-import { useFirebaseAuth } from "../../Auth/AuthProvider";
+import ApiComponent from "../../API/ApiComponent";
+// import { useFirebaseAuth } from "../../Auth/AuthProvider";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../../components/Error.jsx/ErrorPage";
 import Swal from "sweetalert2";
+import { useFirebaseAuth } from "../../hooks/useAuth";
 
 const JobApply = () => {
   const { user } = useFirebaseAuth();
+  const {
+    fetchJobDetails,
+    postJobApplication,
+   
+  } = ApiComponent();
+
 
   const name = user.displayName || "Your Name";
   const email = user.email;

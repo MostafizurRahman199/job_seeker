@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useFirebaseAuth } from '../Auth/AuthProvider';
+// import { useFirebaseAuth } from '../Auth/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Aos from 'aos';
 import updateProfileBg from '../assets/updateProfile.png';
+import { useFirebaseAuth } from '../hooks/useAuth';
 
 const UpdateProfile = () => {
     const { user, setUser , updateUserProfile} = useFirebaseAuth();

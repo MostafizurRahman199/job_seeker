@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useFirebaseAuth  } from '../Auth/AuthProvider';
+
 
 import { FcGoogle } from 'react-icons/fc';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -12,8 +12,10 @@ import { sweetAlert } from '../utils/sweetAlert';
 import Swal from 'sweetalert2';
 import registerAnimation from "../../public/register.json"
 import Lottie from 'lottie-react';
+import { useFirebaseAuth } from '../hooks/useAuth';
 
 const Register = () => {
+
     const navigate = useNavigate();
     const { registerUser, googleSignIn, setUser } = useFirebaseAuth();
     const [passwordError, setPasswordError] = useState('');

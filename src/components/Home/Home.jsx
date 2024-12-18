@@ -13,10 +13,13 @@ import ResponsedBy from "./ResponsedBy";
 import StaticBanner from "./StaticBanner";
 import TodayJobs from "./TodayJobs";
 
+
 const Home = () => {
   return (
     <div>
+   
       {/* <Banner /> */}
+      
       <AnimationBanner></AnimationBanner>
       <Category></Category>
       <FeaturedJobs></FeaturedJobs>

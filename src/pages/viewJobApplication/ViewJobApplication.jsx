@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { getJobApplication, updateJobApplicationStatus } from "../../API/api";
+import ApiComponent from "../../API/ApiComponent";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../../components/Error.jsx/ErrorPage";
 
 const ViewJobApplication = () => {
+  const {
+ 
+    getJobApplication,
+    updateJobApplicationStatus,
+   
+  } = ApiComponent();
+
   const { jobId } = useParams();
   const queryClient = useQueryClient();
   const [selectedStatus, setSelectedStatus] = useState(""); // Track selected status

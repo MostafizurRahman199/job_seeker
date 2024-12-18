@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
-import { useFirebaseAuth } from '../Auth/AuthProvider';
+// import { useFirebaseAuth } from '../Auth/AuthProvider';
 import { FaHome,  FaUser, FaUserPlus, FaSignInAlt, } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import logo from '../assets/logoNav.png'
@@ -12,9 +12,13 @@ import { IoGameControllerOutline } from 'react-icons/io5';
 import DarkModeToggle from '../components/Home/DarkModeToggle';
 import gamerLogo from "../assets/gamer3.png"
 import { Tooltip as ReactTooltip } from 'react-tooltip';
-
+import { VscGitStashApply } from "react-icons/vsc";
 import 'react-tooltip/dist/react-tooltip.css';
 import JobLogo from "../assets/job_logo.png";
+import { BsFillFileEarmarkPostFill } from "react-icons/bs";
+import { FiSave } from "react-icons/fi";
+import { useFirebaseAuth } from '../hooks/useAuth';
+
 
 
 const Navbar = () => {
@@ -210,15 +214,19 @@ const Navbar = () => {
 
 
               <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/addJob')}>
-                <FaUser className="lg:inline-block mr-1" /> My Applied Job
+                {/* <FaUser className="lg:inline-block mr-1" /> My Applied Job */}
+      
+                <VscGitStashApply className="lg:inline-block mr-1"/>My Applied Job
               </Link>
 
               <Link to="/myJobPost" className={getLinkStyle('/myJobPost')} onClick={() => setActiveLink('/myJobPost')}>
-                <FaUser className="lg:inline-block mr-1" /> My Posted Job
+      
+                <BsFillFileEarmarkPostFill className="lg:inline-block mr-1"  />    My Posted Job
               </Link>
               
-              <Link to="/gameWatchList" className={getLinkStyle('/gameWatchList')} onClick={() => setActiveLink('/gameWatchList')}>
-                <IoGameControllerOutline className="lg:inline-block mr-1" /> Game WatchList
+              <Link to="/saveJob" className={getLinkStyle('/saveJob')} onClick={() => setActiveLink('/saveJob')}>
+                {/* <IoGameControllerOutline className="lg:inline-block mr-1" />Saved Job */}
+                <FiSave className="lg:inline-block mr-1" />Saved Job
               </Link>
 
 
@@ -370,10 +378,10 @@ const Navbar = () => {
           </Link>
 
            <Link 
-            to="/gameWatchList" 
-            className={`block ${getLinkStyle('/gameWatchList')}`}
+            to="/saveJob" 
+            className={`block ${getLinkStyle('/saveJob')}`}
             onClick={() => {
-              setActiveLink('/gameWatchList');
+              setActiveLink('/saveJob');
               setIsMobileMenuOpen(false);
             }}
           >
@@ -561,7 +569,7 @@ export default Navbar
 //                 <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/applied-job')}>
 //                   <FaUser className="mr-1" /> My Applied Job
 //                 </Link>
-//                 <Link to="/gameWatchList" className={getLinkStyle('/gameWatchList')} onClick={() => setActiveLink('/gameWatchList')}>
+//                 <Link to="/saveJob" className={getLinkStyle('/saveJob')} onClick={() => setActiveLink('/saveJob')}>
 //                   <IoGameControllerOutline className="mr-1" /> Game WatchList
 //                 </Link>
 //               </>
@@ -621,7 +629,7 @@ export default Navbar
 //               <Link to="/applied-job" className={getLinkStyle('/applied-job')} onClick={() => setActiveLink('/applied-job')}>
 //                 <FaUser className="mr-1" /> My Applied Job
 //               </Link>
-//               <Link to="/gameWatchList" className={getLinkStyle('/gameWatchList')} onClick={() => setActiveLink('/gameWatchList')}>
+//               <Link to="/saveJob" className={getLinkStyle('/saveJob')} onClick={() => setActiveLink('/saveJob')}>
 //                 <IoGameControllerOutline className="mr-1" /> Game WatchList
 //               </Link>
 //             </>

@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { useFirebaseAuth } from "../../Auth/AuthProvider";
+// import { useFirebaseAuth } from "../../Auth/AuthProvider";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { deleteMyJobPost, myJobPost } from "../../API/api";
+import ApiComponent from "../../API/ApiComponent";
 import { Link, useNavigate } from "react-router-dom";
+import { useFirebaseAuth } from "../../hooks/useAuth";
 
 const MyJobPost = () => {
+  const {
+   myJobPost,
+   deleteMyJobPost,
+  } = ApiComponent();
+
   const { user } = useFirebaseAuth();
   const email = user.email;
   const navigate = useNavigate();

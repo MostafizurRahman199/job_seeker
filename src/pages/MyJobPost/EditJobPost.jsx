@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { fetchJobDetails, updateJobPost } from "../../API/api";
+import ApiComponent  from "../../API/ApiComponent";
 import Swal from "sweetalert2";
-import { useFirebaseAuth } from "../../Auth/AuthProvider";
+// import { useFirebaseAuth } from "../../Auth/AuthProvider";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../../components/Error.jsx/ErrorPage";
+import { useFirebaseAuth } from "../../hooks/useAuth";
 
 const EditJobPost = () => {
+  const {
+    
+    fetchJobDetails,
+    updateJobPost,
+   
+  } = ApiComponent();
+
   const navigate = useNavigate();
   const { id } = useParams(); // Getting job ID from the URL parameters
   const{user} = useFirebaseAuth();

@@ -10,6 +10,10 @@ import {
 
 import auth from '../firebase/firebase.config';
 import { toast } from 'react-toastify';
+import { useMutation } from '@tanstack/react-query';
+import ApiComponent from '../API/ApiComponent';
+import { myContext } from "../hooks/useAuth";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,15 +21,16 @@ import { toast } from 'react-toastify';
 
 // ___________________________create context
 
-const myContext = createContext();
+// const myContext = createContext(null);
 
-export const useFirebaseAuth = () => {
-    return useContext(myContext);
-}
-
-
+// export const useFirebaseAuth = () => {
+//     return useContext(myContext);
+// }
 
 
+
+
+// ________________________component start
 
 const AuthProvider = ({children}) => {
 
@@ -34,6 +39,48 @@ const AuthProvider = ({children}) => {
     
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+
+    const {
+
+        jwtTokenValidation,
+        logoutRoute,
+       
+      } = ApiComponent();
+
+
+    
+    const jwtTokenMutation = useMutation({
+        mutationFn:(resultEmail)=>jwtTokenValidation(resultEmail),
+        onSuccess: (data) => {
+          console.log(data);
+        },
+        onError: (error) => {
+          Swal.fire({
+            position: "top-center",
+            icon: "error",
+            title: "Something went wrong. Try again!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+      });
+    
+    const clearCookiesLogoutRoute = useMutation({
+        mutationFn:logoutRoute,
+        onSuccess: (data) => {
+          console.log(data);
+        },
+        onError: (error) => {
+          Swal.fire({
+            position: "top-center",
+            icon: "error",
+            title: "Something went wrong. Try again!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+      });
     
 
 
@@ -158,8 +205,18 @@ const AuthProvider = ({children}) => {
     React.useEffect( () => {
         const unsubscribe = auth.onAuthStateChanged((currentUser) => {
             setUser(currentUser);
-         
-            setLoading(false);
+
+            if(currentUser?.email){
+                
+                // console.log(currentUser?.email);
+                jwtTokenMutation.mutate(currentUser?.email);
+                setLoading(false);
+            }else{
+                // console.log(currentUser?.email);
+                clearCookiesLogoutRoute.mutate();
+                setLoading(false);
+                
+            }
         });
 
         return () => unsubscribe();

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useFirebaseAuth } from '../Auth/AuthProvider';
+// import { useFirebaseAuth } from '../Auth/AuthProvider';
 import { toast } from 'react-toastify';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Aos from 'aos';
+import { useFirebaseAuth } from '../hooks/useAuth';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');

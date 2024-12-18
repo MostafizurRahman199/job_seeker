@@ -181,16 +181,25 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { getAppliedJob, deleteAppliedJob } from "../../API/api";
-import { useFirebaseAuth } from "../../Auth/AuthProvider";
+import ApiComponent from "../../API/ApiComponent";
+// import { useFirebaseAuth } from "../../Auth/AuthProvider";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../../components/Error.jsx/ErrorPage";
 import Swal from "sweetalert2";
+import { useFirebaseAuth } from "../../hooks/useAuth";
 
 const MyAppliedJob = () => {
   const { user } = useFirebaseAuth();
   const email = user.email;
   const queryClient = useQueryClient();
+ 
+  const {
+   
+    getAppliedJob,
+    deleteAppliedJob,
+    
+  } = ApiComponent();
+
 
   // Fetch applied jobs
   const { data: appliedJobs, isLoading, isError, error } = useQuery({

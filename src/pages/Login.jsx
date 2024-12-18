@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useFirebaseAuth } from '../Auth/AuthProvider';
+// import { useFirebaseAuth } from '../Auth/AuthProvider';
 
 import { FcGoogle } from 'react-icons/fc'; 
 import { toast } from 'react-toastify';
@@ -12,12 +12,17 @@ import Swal from 'sweetalert2';
 import { sweetAlert } from '../utils/sweetAlert';
 import loginAnimation from "../../public/login.json";
 import Lottie from 'lottie-react';
+import { useFirebaseAuth } from '../hooks/useAuth';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const { loginUser, googleSignIn } = useFirebaseAuth();
+
+
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -84,10 +89,30 @@ const Login = () => {
     }
   }
 
+
+// _________________________________jwt token validation
+
+
+      
+    
+    
+
+
+
+  
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await loginUser(email, password);
+     
+      const result =  await loginUser(email, password);
+     
+
+      // console.log(result.email)
+   
+
+
+
       Swal.fire({
         position: "top-center",
         icon: "success",
@@ -104,7 +129,9 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn();
+      const result = await googleSignIn();
+      // console.log(result.email);
+ 
       Swal.fire({
         position: "top-center",
         icon: "success",

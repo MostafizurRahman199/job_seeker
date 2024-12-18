@@ -20,6 +20,9 @@ import AllJobs from "../pages/AllJob/AllJobs";
 import MyJobPost from "../pages/MyJobPost/MyJobPost";
 import EditJobPost from "../pages/MyJobPost/EditJobPost";
 import ViewJobApplication from "../pages/viewJobApplication/ViewJobApplication";
+import MySavedJob from "../pages/MySavedJob/MySavedJob";
+import ApiComponent from "../API/ApiComponent";
+
 
 
 const router = createBrowserRouter([    
@@ -38,9 +41,8 @@ const router = createBrowserRouter([
                     </>
                 ),
             },
-            
-           
-            {
+     
+           {
                 path: "/register",
                 element: (
                     <>
@@ -240,6 +242,19 @@ const router = createBrowserRouter([
                         </Helmet>
                         <PrivateRoute>
                          <ViewJobApplication></ViewJobApplication>
+                        </PrivateRoute>
+                    </>
+                ),
+            },
+            {
+                path: "/saveJob",
+                element: (
+                    <>
+                        <Helmet>
+                            <title>Job Seeker - Saved Job</title>
+                        </Helmet>
+                        <PrivateRoute>
+                        <MySavedJob></MySavedJob>
                         </PrivateRoute>
                     </>
                 ),

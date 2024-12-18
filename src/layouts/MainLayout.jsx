@@ -5,9 +5,11 @@ import Footer from "./Footer";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useFirebaseAuth } from "../Auth/AuthProvider";
+// import { useFirebaseAuth } from "../Auth/AuthProvider";
 import { FaSpinner } from "react-icons/fa";
 import { ThemeProvider } from "../Auth/ThemeContext";
+import ApiComponent from "../API/ApiComponent";
+import { useFirebaseAuth } from "../hooks/useAuth";
 
 const MainLayout = () => {
   const { user, loading } = useFirebaseAuth();
@@ -23,6 +25,7 @@ const MainLayout = () => {
         <>
     
           <Navbar />
+          {/* <ApiComponent></ApiComponent> */}
           <div className="pt-16">
             <Outlet />
           </div>

@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { allJob } from "../../API/api";
+import ApiComponent  from "../../API/ApiComponent";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../../components/Error.jsx/ErrorPage";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllJobs = () => {
+
+// const [jobs, setJobs] = useState([]);
+
+
+// const api = useAxiosSecure();
+
+//   useEffect(()=>{
+//       api.get("/jobs").then(res=> setJobs(res.data))
+//     }, [])
+  
+  const {allJob} = ApiComponent();
+  
   const { data: jobs, isLoading, isError, error } = useQuery({
     queryKey: ["allJobs"],
     queryFn: allJob,
@@ -25,17 +38,17 @@ const AllJobs = () => {
     return matchesSearch && matchesJobType && matchesCategory;
   });
 
-  if (isLoading) {
-    return (
-      <Loading></Loading>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <Loading></Loading>
+  //   );
+  // }
 
-  if (isError) {
-    return (
-    <ErrorPage></ErrorPage>
-    );
-  }
+  // if (isError) {
+  //   return (
+  //   <ErrorPage></ErrorPage>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen w-full  sm:w-10/12 mx-auto p-4 sm:p-6">

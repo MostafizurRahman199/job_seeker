@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useFirebaseAuth } from '../../Auth/AuthProvider';
+// import { useFirebaseAuth } from '../../Auth/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';  // Import SweetAlert2
 import websiteAnimation from "../../../public/website2.json"
 import Lottie from 'lottie-react';
 import send from "../../../public/send.json"
 import { Typewriter } from 'react-simple-typewriter';
+import { useFirebaseAuth } from '../../hooks/useAuth';
 
 const WebsiteReview = () => {
   const { user } = useFirebaseAuth();

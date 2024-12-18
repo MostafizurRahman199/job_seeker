@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../../components/Error.jsx/ErrorPage";
-import { fetchJobDetails } from "../../API/api";
+import ApiComponent from "../../API/ApiComponent";
 import JobHeader from "./JobHeader";
 import JobDetailsSection from "./JobDetailsSection";
 import JobDescription from "./JobDescription";
@@ -14,6 +14,10 @@ import { motion } from "framer-motion";
 
 const JobDetails = () => {
   const { id } = useParams();
+  const {
+    fetchJobDetails,
+  } = ApiComponent();
+
 
   const [isSaved, setIsSaved] = useState(false);
 

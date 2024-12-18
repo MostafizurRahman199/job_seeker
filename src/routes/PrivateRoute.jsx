@@ -37,7 +37,8 @@
 
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useFirebaseAuth } from "../Auth/AuthProvider";
+import { useFirebaseAuth } from "../hooks/useAuth";
+// import { useFirebaseAuth } from "../Auth/AuthProvider";
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();

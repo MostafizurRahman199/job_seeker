@@ -1,11 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
-import { fetchJobs } from "../../API/api";
+import ApiComponent from "../../API/ApiComponent";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../Error.jsx/ErrorPage";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 const TodayJobs = () => {
+
+
+  const {
+    fetchJobs,
+
+  } = ApiComponent();
+
   const { data: jobs, isLoading, isError, error } = useQuery({
     queryKey: ["jobs"],
     queryFn: fetchJobs,

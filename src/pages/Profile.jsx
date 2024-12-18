@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { useFirebaseAuth } from '../Auth/AuthProvider';
+// import { useFirebaseAuth } from '../Auth/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import Aos from 'aos';
 import Lottie from 'lottie-react';
 import fireAnimation from "../../public/fire.json";
+import { useFirebaseAuth } from '../hooks/useAuth';
 
 const getProfileImage = (user) => {
   return user?.photoURL || 

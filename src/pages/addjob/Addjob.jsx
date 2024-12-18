@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { postAddJob } from "../../API/api";
+import ApiComponent from "../../API/ApiComponent";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { useFirebaseAuth } from "../../Auth/AuthProvider";
+import { useFirebaseAuth } from "../../hooks/useAuth";
+// import { useFirebaseAuth } from "../../Auth/AuthProvider";
 
 const AddJob = () => {
 
 const {user} = useFirebaseAuth();
 const addJobOwnerName = user.displayName;
 const addJobOwnerEmail = user.email;
+
+const {
+
+  postAddJob,
+ 
+} = ApiComponent();
+
 
 
   const [formData, setFormData] = useState({
