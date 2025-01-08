@@ -6,7 +6,7 @@ The **Job Seeker Web Application** is an intuitive platform that bridges the gap
 ---
 
 ### Live Link
-[Check out the live website here]([https://chillgamerbymostafiz.netlify.app/](https://job-seeker-d51b4.web.app/))
+[Check out the live website here]([https://job-seeker-d51b4.web.app/])
 
 ## Features
 
